@@ -133,44 +133,34 @@ class Note(pygame.sprite.Sprite):
             self.rect.centery = shift
 
 def initialize(song_name):
-    f = open(song_name + '.json')
+    f = open(f"{song_name}.json")
     data = json.load(f)
     for i in data['notes']:
         NOTE_TIMES.append(i['time'])
         NOTE_POSITIONS.append(i['position'])
     f.close()
-    pygame.mixer.music.load(song_name + '.mp3')
+    pygame.mixer.music.load(f"{song_name}.mp3")
 
 def combo_count(amount):
     font = pygame.font.SysFont("comicsansms", 20)
-    text = font.render("Combo: " + str(amount), True, WHITE)
+    text = font.render( f"Combo: {amount}", True, WHITE)
     screen.blit(text, (20, 20))
 
 def score_count(score_amount):
     font = pygame.font.SysFont("comicsansms", 20)
-    text = font.render("Score: " + str(score_amount), True, WHITE)
+    text = font.render(f"Score: {score_amount}", True, WHITE)
     screen.blit(text, (620, 20))
 
 def debug_time(current, mostaccurate, previousframetime, songtime):
     font = pygame.font.SysFont("comicsansms", 15)
-    text = font.render("current: " + str(current), True, WHITE)
+    text = font.render(f"current: {current}", True, WHITE)
     screen.blit(text, (620, 300))
-    text = font.render("mostaccurate: " + str(mostaccurate), True, WHITE)
+    text = font.render(f"mostaccurate: {mostaccurate}", True, WHITE)
     screen.blit(text, (620, 315))
-    text = font.render("previousframetime: " + str(previousframetime), True, WHITE)
+    text = font.render(f"previousframetime: {previousframetime}", True, WHITE)
     screen.blit(text, (620, 330))
-    text = font.render("songtime: " + str(songtime), True, WHITE)
+    text = font.render(f"songtime: {songtime}", True, WHITE)
     screen.blit(text, (620, 345))
-
-def debug_key(debugkey, mostaccurate):
-    keyspressed = ""
-    font = pygame.font.SysFont("comicsansms", 20)
-    text = font.render("time pressed: " + str(mostaccurate), True, WHITE)
-    screen.blit(text, (620, 370))
-    for key in debugkey:
-        keyspressed = keyspressed + " " + key
-    text = font.render("keys pressed: " + str(keyspressed), True, WHITE)
-    screen.blit(text, (620, 390))
 
 def game_loop():
     initialize('test/example')
@@ -192,21 +182,19 @@ def game_loop():
     notesE = pygame.sprite.Group()
     notesF = pygame.sprite.Group()
 
+    note_dict = {
+        1: notesA.add,
+        2: notesB.add,
+        3: notesC.add,
+        4: notesD.add,
+        5: notesE.add,
+        6: notesF.add,
+    }
+
     for note in range(len(NOTE_TIMES)):
         timing = int(NOTE_TIMES[note])
         position = int(NOTE_POSITIONS[note])
-        if position == 1:
-            notesA.add(Note(screen, note, timing, position))
-        elif position == 2:
-            notesB.add(Note(screen, note, timing, position))
-        elif position == 3:
-            notesC.add(Note(screen, note, timing, position))
-        elif position == 4:
-            notesD.add(Note(screen, note, timing, position))
-        elif position == 5:
-            notesE.add(Note(screen, note, timing, position))
-        elif position == 6:
-            notesF.add(Note(screen, note, timing, position))
+        note_dict[position](Note(screen, note, timing, position))
 
     previousframetime = clock.get_time()
     lastplayheadposition = 0
@@ -228,7 +216,6 @@ def game_loop():
         combo_count(combo)
         score_count(score)
         #debug_time(current, mostaccurate, previousframetime, songtime)
-        #debug_key(debugkey, mostaccurate)
 
         if keypressS:
             screen.blit(pressed, (POSITION_A, 494))
