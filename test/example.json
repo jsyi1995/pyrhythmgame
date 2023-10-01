@@ -1,0 +1,85 @@
+{
+    "notes": [
+        {
+            "position": 1,
+            "time": 5203
+        },
+        {
+            "position": 2,
+            "time": 5667
+        },
+        {
+            "position": 3,
+            "time": 6545
+        },
+        {
+            "position": 4,
+            "time": 7044
+        },
+        {
+            "position": 1,
+            "time": 7103
+        },
+        {
+            "position": 2,
+            "time": 7507
+        },
+        {
+            "position": 3,
+            "time": 7945
+        },
+        {
+            "position": 3,
+            "time": 8100
+        },
+        {
+            "position": 6,
+            "time": 8877
+        },
+        {
+            "position": 5,
+            "time": 9201
+        },
+        {
+            "position": 4,
+            "time": 9500
+        },
+        {
+            "position": 6,
+            "time": 10023
+        },
+        {
+            "position": 1,
+            "time": 11002
+        },
+        {
+            "position": 3,
+            "time": 13002
+        },
+        {
+            "position": 2,
+            "time": 13500
+        },
+        {
+            "position": 4,
+            "time": 14200
+        },
+        {
+            "position": 5,
+            "time": 14909
+        },
+        {
+            "position": 1,
+            "time": 15500
+        },
+        {
+            "position": 3,
+            "time": 16002
+        },
+        {
+            "position": 4,
+            "time": 17000
+        }
+    ],
+    "file": "test/example.mp3"
+}
